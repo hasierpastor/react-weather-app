@@ -6,7 +6,20 @@ class WeatherForm extends Component {
     this.state = {
       city: ''
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  handleChange(evt) {
+    this.setState({ city: evt.target.value });
+  }
+
+  handleSubmit(evt) {
+    this.props.getWeatherData(this.state.city);
+    this.setState({ city: '' });
+    evt.preventDefault();
+  }
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
